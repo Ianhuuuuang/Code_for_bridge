@@ -1,7 +1,7 @@
 # coding=utf-8
 import docx
 
-doc = docx.Document('tmp.docx')
+doc = docx.Document('D/tmp.docx')
 for table in doc.tables:  # 遍历所有表格
     print('----table------')
     for row in table.rows:  # 遍历表格的所有行
