@@ -11,8 +11,8 @@ def merge(str1,str2):  # 合并两个单元格内容
     r = str1+'-'+str2
     return r
 path = r'G:\001桥梁检测\2018年12月11宿迁录系统'
-file = '病害表格.xlsx'
-sheetname='3'
+file = '病害表格.xlsm'
+sheetname='13.4'
 #打开文件
 data = xlrd.open_workbook(path + '/' +file)
 #path + '/' +file 是文件的完整路径
@@ -36,17 +36,22 @@ sheet = data.sheet_by_name(sheetname)
 # cell_A2 = sheet2.row(0)[1].value
 # print(cell_A2)
 time.sleep(2)
-for i in range(0, 3):
+for i in range(0, 47):
     print(i+1)
     pg.click(340, 268, button='left')
     time.sleep(0.5)
     pg.click(536, 330)
-    info1 = sheet.cell(i,0).value
-    pg.typewrite(info1)
+    # info1_1 = sheet.cell(i,0).value
+    # info1_2 = sheet.cell(i, 1).value
+    # info1 = merge(info1_1, info1_2)
+    info1 = sheet.cell(i, 0).value
+    pl.copy(info1)
+    time.sleep(0.5)
+    pg.hotkey('ctrlleft', 'v')
     #pg.typewrite(str(int(info1)))
     time.sleep(1)
     pg.click(760, 328)
-    pg.press('up',presses=2)
+    pg.press('down',presses=1)
     time.sleep(0.5)
     pg.press('enter')
     time.sleep(1)
@@ -57,20 +62,20 @@ for i in range(0, 3):
     pg.press('enter')
     time.sleep(1)
     pg.press('tab')
-    info2 = sheet.cell(i, 1).value
+    info2 = sheet.cell(i, 2).value
     pl.copy(info2)
     pg.hotkey('ctrlleft','v')
     time.sleep(0.5)
     pg.press('tab')
-    info3 = sheet.cell(i, 3).value
+    info3 = sheet.cell(i, 4).value
     pl.copy(info3)
     pg.hotkey('ctrlleft','v')
     time.sleep(0.5)
     pg.press('tab')
-    info4 = sheet.cell(i, 2).value
+    info4 = sheet.cell(i, 3).value
     pl.copy(info4)
     pg.hotkey('ctrlleft','v')
-    info5 = sheet.cell(i, 4).value
+    info5 = sheet.cell(i, 5).value
     if info5!='/':
         pg.click(1765, 329)
         time.sleep(1)
@@ -85,9 +90,9 @@ for i in range(0, 3):
         pg.click(1068, 708)
         time.sleep(10)
         pg.click(483, 271)
-        time.sleep(5)
+        time.sleep(15)
     else:
         time.sleep(1)
         pg.click(483, 271)
-        time.sleep(5)
+        time.sleep(15)
 print('done')
