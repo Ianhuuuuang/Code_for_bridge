@@ -17,7 +17,7 @@ SearchClick = "/html/body/div[2]/div/div/div/div[1]/span[1]/span/a"
 # Xpath变量
 str1 = "(//div[contains(.,'S245')])[10]"  # 勾选桥梁使用
 # 等待页面加载完成
-WebDriverWait(browser, 60, 0.5).until(ec.element_to_be_clickable((By.XPATH, ThemeBox))
+WebDriverWait(browser, 60, 0.5).until(ec.element_to_be_clickable((By.XPATH, ThemeBox)))
 # 桥梁名称
 bridgeName = '砂礓河大桥'
 # 按桥梁名称搜索
