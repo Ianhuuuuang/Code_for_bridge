@@ -6,4 +6,4 @@ for i in allList:
     if 'python' in aa.lower():
         oldName = u"D:\\notes\\python\\资料\\"+aa+"."+bb
         newName = u"D:\\copy\\newname"+aa+"."+bb
-        shutil.copyfile(oldname,newname)
+        shutil.copyfile(oldName,newName)

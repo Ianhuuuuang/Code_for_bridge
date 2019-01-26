@@ -9,3 +9,4 @@ for table in doc.tables:  # 遍历所有表格
         # print row_str
         for cell in row.cells:
             print(cell.text, '\t')
+            
