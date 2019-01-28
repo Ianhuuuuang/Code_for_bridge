@@ -4,8 +4,8 @@
 # str1 = 'abcdefghijk'
 # it = str1[::-1]
 # print(it)
-def subdict(dct,keys):
-    return dict([(key,dct.get(key)) for key in keys if dct[key]])
+# def subdict(dct,keys):
+#     return dict([(key,dct.get(key)) for key in keys if dct[key]])
 
 # dic = {'sign':1,'node':'end','time':''}
 # res = subdict(dic,['sign','node','time'])
@@ -25,5 +25,17 @@ def subdict(dct,keys):
 # ans = subdict(res,List_Pw)
 # print(ans)
 
-L = 12//4
-print(L)
+# L = type(1.1)
+
+# print(L is float)
+L = [1.135,1.0,2.0,2.139,'8',3.555]
+res = []
+for x in L:
+    if type(x) is float:
+        if not x%1:
+            res.append(int(x))
+        else:
+            res.append(round(x,2))
+    else:
+        res.append(x)
+print(res)
