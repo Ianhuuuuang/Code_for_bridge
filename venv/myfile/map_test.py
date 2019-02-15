@@ -9,4 +9,8 @@
 # res = [list(s) for s in seqs]
 # out = tuple(s[0] for s in res)
 # print(out)
-S = 'hello'
+S = '654321'
+L = list(S)
+D = enumerate(L)
+DD = list(D)
+print(DD)
