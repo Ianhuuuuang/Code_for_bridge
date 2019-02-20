@@ -13,6 +13,7 @@ def item_math(filepath,filename,sheetname,columnNumber):
     else:
         return(0) 
 
+
 def preprocess(lst):
     res = []
     for x in lst:
@@ -27,14 +28,27 @@ def preprocess(lst):
 
 
 def subdict(dct,keys):
+    '''
+    得到dct中key包含于list中的子dict     INP： dct----dict
+                                             keys---list
+    '''
     return dict([(key,dct.get(key)) for key in keys if dct[key]!=''])
 
+
 def col_No(filepath,filename,sheetname):
+    '''
+    统计excel中列数
+    '''
     worksheet = xlrd.open_workbook(filepath+'\\'+filename)
     sheet = worksheet.sheet_by_name(sheetname)
     return(sheet.ncols)
 
-def TDN_Head(arg):      
+
+def TDN_Head(arg):
+    '''
+    钢筋命令头部部分生成：
+                        INP=dict-----{excel 项目名称：值}
+    '''      
     cmd = 'NAME={name},{钢束特性},{起始单元编号}to{结束单元编号},0,0,ROUND,2D\n\
     {钢束组},USER,0,0,YES,1\n\
     ELEMENT,{单元插入端点},{插入点单元号},{插入方向}\n\
@@ -43,6 +57,13 @@ def TDN_Head(arg):
     return(res)
 
 def TDN_Pw(arg):
+    '''
+    平弯钢筋命令部分生成：
+                        INP=dict-----{excel 项目名称：值}
+                        OUT=string-----Y=...
+                                       Y=...
+                                       ...
+    '''
     List_Pw = ['y1','y2','y3','y4','y5','y6','xy1','xy2','xy3','xy4','xy5','xy6',
     'ry1','ry2','ry3','ry4','ry5','ry6']    
     cmd_head = '    Y={begin},{begin_y},NO,0,0,NONE,,,,\n'
@@ -63,18 +84,26 @@ def TDN_Pw(arg):
     res = cmd_head+cmd_mid+cmd_end
     return(res.format(**arg))
 
+
 def TDN_Sw(arg):
+    '''
+    竖弯钢筋命令部分生成：
+                        INP=dict-----{excel 项目名称：值}
+                        OUT=string-----Z=...
+                                       Z=...
+                                       ...
+    '''
     List_Sw = ['z1','z2','z3','z4','z5','z6','xz1','xz2','xz3','xz4','xz5','xz6',
     'rz1','rz2','rz3','rz4','rz5','rz6']    
     cmd_head = '    Z={begin},{begin_z},NO,0,0,NONE,,,,\n'
     cmd_end = '    Z={end},{end_z},NO,0,0,NONE,,,,\n'
     cmd_body = []
-    cmd_body.append('    Z={z1},{xz1},NO,0,{rz1},NONE,,,,\n') 
-    cmd_body.append('    Z={z2},{xz2},NO,0,{rz2},NONE,,,,\n')
-    cmd_body.append('    Z={z3},{xz3},NO,0,{rz3},NONE,,,,\n') 
-    cmd_body.append('    Z={z4},{xz4},NO,0,{rz4},NONE,,,,\n')
-    cmd_body.append('    Z={z5},{xz5},NO,0,{rz5},NONE,,,,\n')
-    cmd_body.append('    Z={z6},{xz6},NO,0,{rz6},NONE,,,,\n')
+    cmd_body.append('    Z={z1},{xz1},{bot1},0,{rz1},NONE,,,,\n') 
+    cmd_body.append('    Z={z2},{xz2},{bot2},0,{rz2},NONE,,,,\n')
+    cmd_body.append('    Z={z3},{xz3},{bot3},0,{rz3},NONE,,,,\n') 
+    cmd_body.append('    Z={z4},{xz4},{bot4},0,{rz4},NONE,,,,\n')
+    cmd_body.append('    Z={z5},{xz5},{bot5},0,{rz5},NONE,,,,\n')
+    cmd_body.append('    Z={z6},{xz6},{bot6},0,{rz6},NONE,,,,\n')
     dct_z = subdict(arg,List_Sw)
     if not dct_z:
         cmd_mid=''
