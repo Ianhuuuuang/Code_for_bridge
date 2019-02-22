@@ -17,8 +17,8 @@ filepath = 'G:\\002桥梁监控\\2019年度\\20190115波形钢腹板\\excel'
 filename = 'section.xlsx'
 sheetname = 'Sheet1'
 
-ColumnNo = 12
-savepath = 'G:\\002桥梁监控\\2019年度\\20190115波形钢腹板\\CAD\\3Parts截面\\20a'
+ColumnNo = 21
+savepath = 'G:\\002桥梁监控\\2019年度\\20190115波形钢腹板\\CAD\\abaqus实体\\15'
 p = item_math(filepath,filename,sheetname,ColumnNo)
 
 key_1 = [('x'+str(i),'y'+str(i)) for i in range(1,24)]
