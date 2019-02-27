@@ -1,3 +1,4 @@
+import itertools
 s = open(r'G:/002桥梁监控/2019年度/梯度升温.txt','w')
 
 for i in range(1,76):

@@ -6,7 +6,7 @@ def imgconvert(filepath,filename,outpath):
     Img.save("test1.png")
     
     # 自定义灰度界限，大于这个值为黑色，小于这个值为白色
-    threshold = 170
+    threshold = 150
     
     table = []
     for i in range(256):
@@ -19,10 +19,15 @@ def imgconvert(filepath,filename,outpath):
     photo = Img.point(table, '1')
     photo.save(outpath+filename)
 
-filepath = 'D:\\12345\\'
-outpath = 'D:\\12345\\修改后\\'
-for i in range(1,356):
-    s = str(i).zfill(3)
-    filename = 'Python语言在Abaqus中的应用-曹金凤等编著_页面_' + s +'.png'    
-    imgconvert(filepath,filename,outpath)
-    print('第'+ s +'图片完成')
+
+# filepath = 'D:\\12345\\'
+# outpath = 'D:\\12345\\修改后\\'
+filepath = 'D:\\'
+outpath = 'D:\\12\\'
+filename = 'test.png'
+imgconvert(filepath,filename,outpath)
+# for i in range(1,356):
+#     s = str(i).zfill(3)
+#     filename = 'test.png'    
+#     imgconvert(filepath,filename,outpath)
+#     print('第'+ s +'图片完成')
