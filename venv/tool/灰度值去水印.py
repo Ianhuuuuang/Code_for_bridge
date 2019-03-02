@@ -15,7 +15,7 @@ def imgconvert(filepath,filename,outpath):
             table.append(1)
     
     # 图片二值化
-    photo = Img.point(table, '1')
+    photo = Img.point(table, '1')    
     photo.save(outpath+filename)
 
 
