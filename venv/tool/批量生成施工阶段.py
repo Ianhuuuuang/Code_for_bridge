@@ -14,24 +14,20 @@
 #   NAME={x18}#挂篮, 1, YES, NO, NO, 5\n\
 #   ALOAD={x19}#块施工挂篮, FIRST\n\
 #   DLOAD={x20}#块施工挂篮, FIRST\n'
-text = '  NAME={x1}#块张拉前, 1, YES, NO, NO, 5\n\
-  ALOAD={x2}#块施工挂篮张拉时, FIRST\n\
-  AELEM=块段{x3}, 7, 块段{x4}(f+d), 7\n\
-  DELEM=块段{x5}(f+d), 100, 块段{x6}(f), 100\n\
-  DLOAD=顶板湿重{x7}, FIRST, 底板湿重{x8}, FIRST\n\
-  NAME={x9}#块张拉后, 1, YES, NO, NO, 5\n\
-  ALOAD={x10}#块钢束张拉, FIRST\n\
-  NAME={x11}#挂篮, 1, YES, NO, NO, 5\n\
-  ALOAD={x12}#块施工挂篮, FIRST\n\
-  DLOAD={x13}#块施工挂篮, FIRST\n\
-  DLOAD={x14}#块施工挂篮张拉时, FIRST\n'
+text = '  {x1},  LZ, Top, 3, , YES\n\
+    INPUT,  35500, 1e-005, 0, 1, 17000, 3, 0, 3, 100, -7, -2.75\n\
+    INPUT,  35500, 1e-005, 0, 1, 16000, 3, 100, 3, 300, -2.75, -0.92\n\
+    INPUT,  35500, 1e-005, 0, 1, 12000, 3, 300, 3, 400, -0.92, 0\n'
 txt = open('D:\\res.txt','w')
-L1 = [('x'+ str(i)) for i in range(1,15)]
-L2 = [1,2,1,2,1,2,1,2,1,1,3,3,2,2]
-for w in range(1,16):
-    L3 = [w + x for x in L2]
-    D = dict(zip(L1, L3))
-    res = text.format(**D)
-    print(res,file=txt)
+# L1 = ['x1']
+# L2 = 
+# for w in range(1,76):
+#     L3 = [w + x for x in L2]
+#     D = dict(zip(L1, L3))
+#     res = text.format(**D)
+#     print(res,file=txt)
+for i in range(1,76):
+  res = text.format(**{'x1':i})
+  print(res,file=txt)
 txt.close()
 print('done')
