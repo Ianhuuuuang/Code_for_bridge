@@ -37,7 +37,7 @@ def grayConvert(filepath,filename,outpath):
     
     # 图片二值化
     photo = Img.point(table, '1')
-    return photo
+    photo.save(outpath+filename)
 
 filepath = 'D:\\12345\\'
 temppath = 'D:\\12345\\tmp\\'
@@ -47,37 +47,36 @@ mkdir(outpath)
 for i in range(1,81):
     s = str(i).zfill(2)
     filename = 'JTG D60-2015公路桥涵设计通用规范_页面_'+s+'.png'
-    tmp = grayConvert(filepath,filename,outpath)
-    tmp = np.asarray(img1)
+    grayConvert(filepath,filename,temppath)
+    tmp = Image.open(temppath+filename)
+    tmp = tmp.convert('RGBA')
+    tmp = np.asarray(tmp)
     tmp.flags.writeable = True
 
     img = Image.open(filepath+filename)
-    img1 = img1.convert('RGBA')
-    a1 = np.asarray(img1)
-    a1.flags.writeable = True
+    img = img.convert('RGBA')
+    img = np.asarray(img)
+    img.flags.writeable = True
+
+    a1 = np.where(img[:,:,0]>178,255,0)
+
+    a3 = a1 - tmp[:,:,0]
+    a4 = np.where(a3==255,255,0)
+    a5 = a1 - a4
+    a5[:,0:270] = 255
+    a5[:,2250:] = 255
+
+    head = a5[:,0:130]
+    body = a5[:,131:2380]
+    bot = a5[:,2381:]
+    newhead = np.hstack((head,bot))
+    if not i%2:
+        res = np.hstack((body,newhead))   
+    else:
+        res = np.hstack((newhead,body))
+
+    img = Image.fromarray(np.uint8(res))
+    img.save(outpath + filename)#保存修改像素点后的图片
     print('第'+ s +'图片完成')  
-
-
-img1 = Image.open('D:\\test203.png')
-img1 = img1.convert('RGBA')
-a1 = np.asarray(img1)
-a1.flags.writeable = True
-
-img2 = Image.open('D:\\test201.png')
-img2 = img2.convert('RGBA')
-a2 = np.asarray(img2)
-a2.flags.writeable = True
-
-
-# a1[:,:,2] = 100
-# a1[:,:,2] = 0
-# a[:,:,3] = 255
-# a3 = np.where(a1[:,:,0]>176,255,0)
-a3 = a1[:,:,0] - a2[:,:,0]
-a4 = np.where(a3==255,255,0)
-a5 = a1[:,:,0] - a4
-
-img = Image.fromarray(np.uint8(a5))
-img.save("D:\\12\\test.png")#保存修改像素点后的图片
 
 
