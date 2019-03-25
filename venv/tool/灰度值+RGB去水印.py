@@ -39,14 +39,15 @@ def grayConvert(filepath,filename,outpath):
     photo = Img.point(table, '1')
     photo.save(outpath+filename)
 
-filepath = 'D:\\12345\\'
-temppath = 'D:\\12345\\tmp\\'
-outpath = 'D:\\12345\\done\\'
+filepath = 'D:\\'
+temppath = 'D:\\荷载试验\\tmp\\'
+outpath = 'D:\\荷载试验\\done\\'
 mkdir(temppath)
 mkdir(outpath)
-for i in range(1,81):
+for i in range(1,2):
     s = str(i).zfill(2)
-    filename = 'JTG D60-2015公路桥涵设计通用规范_页面_'+s+'.png'
+    # filename = 'JTGT J21-01-2015公路桥梁荷载试验规程 _页面_'+s+'.png'
+    filename = 'zhang.png'
     grayConvert(filepath,filename,temppath)
     tmp = Image.open(temppath+filename)
     tmp = tmp.convert('RGBA')

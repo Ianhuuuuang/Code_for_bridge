@@ -14,11 +14,9 @@
 #   NAME={x18}#挂篮, 1, YES, NO, NO, 5\n\
 #   ALOAD={x19}#块施工挂篮, FIRST\n\
 #   DLOAD={x20}#块施工挂篮, FIRST\n'
-text = '  {x1},  LZ, Top, 3, , YES\n\
-    INPUT,  35500, 1e-005, 0, 1, 17000, 3, 0, 3, 100, -7, -2.75\n\
-    INPUT,  35500, 1e-005, 0, 1, 16000, 3, 100, 3, 300, -2.75, -0.92\n\
-    INPUT,  35500, 1e-005, 0, 1, 12000, 3, 300, 3, 400, -0.92, 0\n'
-txt = open('D:\\res.txt','w')
+text = '     SECT={x1}, YES, NO, NO\n\
+        NO, , , , YES, 0.5, 90, 0.0024129, 452, 0.6, NO, , , , YES, 0.15, 0.0012066, NO, , \n'
+txt = open('D:\\res1.txt','w')
 # L1 = ['x1']
 # L2 = 
 # for w in range(1,76):
@@ -26,7 +24,7 @@ txt = open('D:\\res.txt','w')
 #     D = dict(zip(L1, L3))
 #     res = text.format(**D)
 #     print(res,file=txt)
-for i in range(1,76):
+for i in range(68,103):
   res = text.format(**{'x1':i})
   print(res,file=txt)
 txt.close()
